@@ -32,6 +32,16 @@ const theme = createTheme({
     success: {
       main: '#15803d',
     },
+    text: {
+      primary: '#09090b',
+      secondary: '#5b21b6',
+    },
+    action: {
+      active: '#71717a',
+    },
+    background: {
+      default: '#fff',
+    },
   },
   typography: {
     fontFamily: 'Geist, sans-serif',
