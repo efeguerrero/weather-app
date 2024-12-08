@@ -13,6 +13,7 @@ function CitySearchInput({
   setSelectedCity,
 }: CitySearchInputProps) {
   const [cities, setCities] = useState<City[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const debounceRef = useRef<NodeJS.Timeout>();
 
   const handleInputChange = async (value: string) => {
@@ -21,9 +22,11 @@ function CitySearchInput({
     }
     if (value) {
       debounceRef.current = setTimeout(async () => {
+        setIsLoading(true);
         const cities = await getCities(value);
         setCities(cities);
-      }, 1500);
+        setIsLoading(false);
+      }, 1000);
     }
   };
 
@@ -35,7 +38,9 @@ function CitySearchInput({
     <Autocomplete
       options={cities}
       value={selectedCity}
-      noOptionsText="No Cities Found"
+      noOptionsText="No Cities"
+      loading={isLoading}
+      loadingText="Searching..."
       getOptionLabel={(option) =>
         `${option.name}, ${option.region}, ${option.country}`
       }
