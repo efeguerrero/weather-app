@@ -1,8 +1,9 @@
 import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
 import { WeatherSummaryCard } from '../../components/Weather/WeatherSummaryCard';
-import { Typography, Container, Box } from '@mui/material';
+import { Typography, Container, Link, Box } from '@mui/material';
 import CurrentDate from '../../components/common/CurrentDate';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Favorites = () => {
   const { favoriteCitiesData, isLoading } = useFavoriteCitiesContext();
@@ -52,11 +53,14 @@ const Favorites = () => {
     <Container maxWidth="md" sx={{ py: 4 }}>
       <CurrentDate />
       {favoriteCitiesData.map(({ city, weather }) => (
-        <WeatherSummaryCard
-          selectedCity={city}
-          weather={weather}
+        <Link
+          underline="none"
+          component={RouterLink}
+          to={`/favorites/${city.id}`}
           key={city.id}
-        />
+        >
+          <WeatherSummaryCard selectedCity={city} weather={weather} />
+        </Link>
       ))}
     </Container>
   );

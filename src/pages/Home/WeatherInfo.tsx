@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-
 import { City } from '../../Types/city';
-import { getWeather } from '../../api/Weather';
-import { Weather } from '../../Types/weather';
 import { WeatherInfoCard } from '../../components/Weather/WeatherInfoCard';
 import { WeatherSummaryCard } from '../../components/Weather/WeatherSummaryCard';
+import { Weather } from '../../Types/weather';
 
 interface WeatherInfoProps {
   selectedCity: City | null;
+  weather: Weather | null;
+  isLoading: boolean;
 }
 
-const WeatherInfo = ({ selectedCity }: WeatherInfoProps) => {
-  const [weather, setWeather] = useState<Weather | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
+const WeatherInfo = ({
+  selectedCity,
+  weather,
+  isLoading,
+}: WeatherInfoProps) => {
   const weatherCardInfo = [
     {
       title: 'Wind Speed',
@@ -38,19 +38,6 @@ const WeatherInfo = ({ selectedCity }: WeatherInfoProps) => {
       icon: 'Cloud',
     },
   ] as const;
-
-  useEffect(() => {
-    const fetchWeather = async () => {
-      if (selectedCity) {
-        setIsLoading(true);
-        const newWeather = await getWeather(selectedCity);
-        setWeather(newWeather);
-        setIsLoading(false);
-      }
-    };
-
-    fetchWeather();
-  }, [selectedCity]);
 
   if (isLoading) {
     return (
