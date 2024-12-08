@@ -22,7 +22,7 @@ interface NavigationItem {
 }
 
 const navigationItems: NavigationItem[] = [
-  { text: 'Home', icon: <HomeIcon />, path: '/home' },
+  { text: 'Home', icon: <HomeIcon />, path: '/' },
   { text: 'Favorite Cities', icon: <FavoriteIcon />, path: '/favorites' },
 ];
 

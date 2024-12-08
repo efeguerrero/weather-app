@@ -87,7 +87,7 @@ const Layout = () => {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
-          marginTop: { xs: '64px', sm: 0 },
+          marginTop: { xs: '80px', sm: 0 },
         }}
       >
         <Outlet />
