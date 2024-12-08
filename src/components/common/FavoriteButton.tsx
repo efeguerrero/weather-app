@@ -1,14 +1,14 @@
 import { IconButton } from '@mui/material';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { City } from '../../../Types/city';
-import { useFavoriteCitiesContext } from '../../../context/FavoriteCitiesContext';
+import { City } from '../../Types/city';
+import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
 
 interface FavoriteButtonProps {
   city: City;
 }
 
-export function FavoriteButton({ city }: FavoriteButtonProps) {
+function FavoriteButton({ city }: FavoriteButtonProps) {
   const { favoriteCities, AddCityToFavorite, RemoveCityFromFavorite } =
     useFavoriteCitiesContext();
 
@@ -24,7 +24,7 @@ export function FavoriteButton({ city }: FavoriteButtonProps) {
 
   return (
     <IconButton
-      color="inherit"
+      color="secondary"
       onClick={handleClick}
       sx={{
         '&:hover': {
@@ -36,3 +36,5 @@ export function FavoriteButton({ city }: FavoriteButtonProps) {
     </IconButton>
   );
 }
+
+export default FavoriteButton;
