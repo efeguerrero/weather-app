@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { City } from '../Types/city';
 import { Weather } from '../Types/weather';
+import { getWeather } from '../api/Weather';
 
 interface FavoriteCitiesContextProps {
   favoriteCities: City[];
@@ -9,6 +10,7 @@ interface FavoriteCitiesContextProps {
   RemoveCityFromFavorite: (city: City) => void;
   clearFavoriteCities: () => void;
   favoriteCitiesData: { city: City; weather: Weather }[];
+  isLoading: boolean;
 }
 
 interface FavoriteCitiesContextProviderProps {
@@ -22,15 +24,30 @@ export const FavoriteCitiesContext = createContext<
 export const FavoriteCitiesContextProvider = ({
   children,
 }: FavoriteCitiesContextProviderProps) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [favoriteCities, setFavoriteCities] = useState<City[]>([]);
   const [favoriteCitiesData, setFavoriteCitiesData] = useState<
     { city: City; weather: Weather }[]
   >([]);
 
+  // Load favorite cities from Local Storage on first load and fetch weather data for each city.
   useEffect(() => {
-    const favoriteCities = localStorage.getItem('favoriteCities');
+    const favoriteCities: City[] = JSON.parse(
+      localStorage.getItem('favoriteCities') || '[]'
+    );
     if (favoriteCities) {
-      setFavoriteCities(JSON.parse(favoriteCities));
+      setFavoriteCities(favoriteCities);
+      const getFavoriteCitiesData = async () => {
+        const favoriteCitiesData = await Promise.all(
+          favoriteCities.map(async (city) => {
+            const weather = await getWeather(city);
+            return { city, weather };
+          })
+        );
+        setFavoriteCitiesData(favoriteCitiesData);
+        setIsLoading(false);
+      };
+      getFavoriteCitiesData();
     }
   }, []);
 
@@ -63,6 +80,7 @@ export const FavoriteCitiesContextProvider = ({
         RemoveCityFromFavorite,
         clearFavoriteCities,
         favoriteCitiesData,
+        isLoading,
       }}
     >
       {children}
