@@ -1,99 +1,63 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import {
-  Box,
-  Drawer,
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-} from '@mui/material';
-import DrawerContent from './DrawerContent';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Box, AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useNavigate } from 'react-router-dom';
 
-const DRAWER_WIDTH = 260;
-
-const Layout = () => {
-  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setIsMobileDrawerOpen(!isMobileDrawerOpen);
-  };
+function Layout() {
+  const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
-          ml: { sm: `${DRAWER_WIDTH}px` },
-          display: { sm: 'none' },
           boxShadow: 'none',
           backgroundColor: (theme) => theme.palette.background.default,
+          width: '100%',
         }}
       >
-        <Toolbar variant="regular" sx={{ justifyContent: 'space-between' }}>
-          <Typography fontWeight={600} color="text.secondary" variant="h6">
-            Weather App
-          </Typography>
-          <IconButton
-            color="secondary"
-            edge="end"
-            onClick={handleDrawerToggle}
-            sx={{ display: { sm: 'none' } }}
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Toolbar
+            sx={{
+              justifyContent: 'space-between',
+              width: '100%',
+              maxWidth: 'xl',
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
+            <Typography fontWeight={600} color="text.secondary" variant="h6">
+              Weather App
+            </Typography>
+            <Box>
+              <IconButton color="secondary" onClick={() => navigate('/')}>
+                <HomeIcon />
+              </IconButton>
+              <IconButton
+                color="secondary"
+                onClick={() => navigate('/favorites')}
+              >
+                <FavoriteIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </Box>
       </AppBar>
-
-      <Box
-        component="nav"
-        sx={{ width: { sm: DRAWER_WIDTH }, flexShrink: { sm: 0 } }}
-      >
-        {/* Mobile drawer */}
-        <Drawer
-          variant="temporary"
-          open={isMobileDrawerOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{ keepMounted: true }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': {
-              width: DRAWER_WIDTH,
-            },
-          }}
-        >
-          <DrawerContent setIsMobileDrawerOpen={setIsMobileDrawerOpen} />
-        </Drawer>
-
-        {/* Desktop drawer */}
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': {
-              width: DRAWER_WIDTH,
-            },
-          }}
-          open
-        >
-          <DrawerContent setIsMobileDrawerOpen={setIsMobileDrawerOpen} />
-        </Drawer>
-      </Box>
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
-          marginTop: { xs: '80px', sm: 0 },
+          width: '100%',
+          maxWidth: 'sm',
+          marginTop: '64px', // Height of the AppBar
         }}
       >
         <Outlet />
       </Box>
     </Box>
   );
-};
+}
 
 export default Layout;
