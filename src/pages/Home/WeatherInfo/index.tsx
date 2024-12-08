@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Typography, Card, CardContent, Box, IconButton } from '@mui/material';
+import { Typography, Card, CardContent, Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import Favorite from '@mui/icons-material/Favorite';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 import { City } from '../../../Types/city';
 import { getWeather } from '../../../api/Weather';
 import { Weather } from '../../../Types/weather';
 import { WeatherInfoCard } from './WeatherInfoCard';
+import { FavoriteButton } from './FavoriteButton';
 
 interface WeatherInfoProps {
   selectedCity: City | null;
@@ -107,16 +106,7 @@ function WeatherInfo({ selectedCity }: WeatherInfoProps) {
                   {selectedCity?.region}, {selectedCity?.country}
                 </Typography>
               </Box>
-              <IconButton
-                color="inherit"
-                sx={{
-                  '&:hover': {
-                    bgcolor: 'rgba(255,255,255,0.1)',
-                  },
-                }}
-              >
-                <FavoriteBorderOutlinedIcon />
-              </IconButton>
+              <FavoriteButton city={selectedCity} />
             </Box>
 
             <Box
