@@ -1,93 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Typography, Card, CardContent, Box, IconButton } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
-import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
-import WaterDropOutlinedIcon from '@mui/icons-material/WaterDropOutlined';
-import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
-import CompressOutlinedIcon from '@mui/icons-material/CompressOutlined';
-
-import { City } from '../../Types/city';
-import { getWeather } from '../../api/Weather';
-import { Weather } from '../../Types/weather';
-
-interface WeatherCardProps {
-  icon: keyof typeof iconMap;
-  title: string;
-  value: string;
-}
-
-const iconMap = {
-  Air: AirOutlinedIcon,
-  WaterDrop: WaterDropOutlinedIcon,
-  Pressure: CompressOutlinedIcon,
-  Cloud: CloudOutlinedIcon,
-};
-
-function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
-  const Icon = iconMap[icon];
-
-  return (
-    <Card
-      sx={{
-        boxShadow: 'none',
-        border: '1px solid',
-        borderColor: 'primary.dark',
-        bgcolor: 'transparent',
-        borderRadius: 2,
-        color: 'primary.contrastText',
-        height: '100%',
-        '& .MuiCardContent-root': {
-          p: 2,
-        },
-      }}
-    >
-      <CardContent>
-        <Box
-          display="flex"
-          flexDirection={{ xs: 'column', md: 'row' }}
-          alignItems="center"
-          justifyContent="space-around"
-          gap={1}
-        >
-          <Icon />
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography
-              variant="caption"
-              sx={{
-                opacity: 0.8,
-                fontSize: { xs: '0.75rem', md: '0.875rem' },
-              }}
-            >
-              {title}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 500,
-                fontSize: { xs: '1rem', md: '1.25rem' },
-              }}
-            >
-              {value}
-            </Typography>
-          </Box>
-        </Box>
-      </CardContent>
-    </Card>
-  );
-}
+import { City } from '../../../Types/city';
+import { getWeather } from '../../../api/Weather';
+import { Weather } from '../../../Types/weather';
+import { WeatherInfoCard } from './WeatherInfoCard';
 
 interface WeatherInfoProps {
   selectedCity: City | null;
 }
 
-export function WeatherInfo({ selectedCity }: WeatherInfoProps) {
+function WeatherInfo({ selectedCity }: WeatherInfoProps) {
   const [weather, setWeather] = useState<Weather | null>(null);
 
-  const weatherCardInfo: WeatherCardProps[] = [
+  const weatherCardInfo = [
     {
       title: 'Wind Speed',
       value: `${weather?.current.wind_kph} km/h`,
@@ -108,7 +37,7 @@ export function WeatherInfo({ selectedCity }: WeatherInfoProps) {
       value: `${weather?.current.cloud}%`,
       icon: 'Cloud',
     },
-  ];
+  ] as const;
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -230,3 +159,5 @@ export function WeatherInfo({ selectedCity }: WeatherInfoProps) {
     </>
   );
 }
+
+export default WeatherInfo;

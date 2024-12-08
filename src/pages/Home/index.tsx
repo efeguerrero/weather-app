@@ -3,7 +3,7 @@ import { Typography, Container } from '@mui/material';
 import { format } from 'date-fns';
 import { City } from '../../Types/city';
 import CitySearchInput from './CitySearchInput';
-import { WeatherInfo } from './WeatherInfo';
+import WeatherInfo from './WeatherInfo';
 
 function Home() {
   const currentDate = format(new Date(), 'EEEE d, MMMM yyyy');

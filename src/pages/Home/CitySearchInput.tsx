@@ -21,7 +21,6 @@ function CitySearchInput({
     }
     if (value) {
       debounceRef.current = setTimeout(async () => {
-        console.log(value);
         const cities = await getCities(value);
         setCities(cities);
       }, 1500);
