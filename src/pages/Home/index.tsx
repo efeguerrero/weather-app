@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import {
   Typography,
   Container,
@@ -14,13 +15,8 @@ import Favorite from '@mui/icons-material/Favorite';
 import Air from '@mui/icons-material/Air';
 import WaterDrop from '@mui/icons-material/WaterDrop';
 import { format } from 'date-fns';
-
-// Mock data for autocomplete - remove when implementing API
-const mockCities = [
-  { label: 'Buenos Aires, Argentina' },
-  { label: 'London, UK' },
-  { label: 'Tokyo, Japan' },
-];
+import { Cities } from '../../Types';
+import { getCities } from '../../api/Cities';
 
 interface WeatherCardProps {
   icon: React.ReactNode;
@@ -81,6 +77,22 @@ function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
 
 function Home() {
   const currentDate = format(new Date(), 'EEEE d, MMMM yyyy');
+  const [cities, setCities] = useState<Cities[]>([]);
+  const [value, setValue] = useState<Cities | null>(null);
+  const debounceRef = useRef<NodeJS.Timeout>();
+
+  const handleInputChange = async (value: string) => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+    if (value) {
+      debounceRef.current = setTimeout(async () => {
+        console.log(value);
+        const cities = await getCities(value);
+        setCities(cities);
+      }, 1500);
+    }
+  };
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
@@ -93,7 +105,16 @@ function Home() {
       </Typography>
 
       <Autocomplete
-        options={mockCities}
+        options={cities}
+        value={value}
+        noOptionsText="No Cities Found"
+        getOptionLabel={(option) =>
+          `${option.name}, ${option.region}, ${option.country}`
+        }
+        getOptionKey={(option) => option.id}
+        onChange={(_, value) => setValue(value)}
+        onInputChange={(_, value) => handleInputChange(value)}
+        filterOptions={(x) => x}
         renderInput={(params) => (
           <TextField
             {...params}
