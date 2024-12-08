@@ -46,7 +46,7 @@ export function WeatherSummaryCard({
                 {selectedCity.region}, {selectedCity.country}
               </Typography>
             </Box>
-            <FavoriteButton city={selectedCity} />
+            <FavoriteButton city={selectedCity} weather={weather} />
           </Box>
 
           <Box

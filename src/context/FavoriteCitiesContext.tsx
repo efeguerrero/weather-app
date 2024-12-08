@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { City } from '../Types/city';
+import { Weather } from '../Types/weather';
 
 interface FavoriteCitiesContextProps {
   favoriteCities: City[];
   setFavoriteCities: React.Dispatch<React.SetStateAction<City[]>>;
-  AddCityToFavorite: (city: City) => void;
+  AddCityToFavorite: (city: City, weather: Weather) => void;
   RemoveCityFromFavorite: (city: City) => void;
   clearFavoriteCities: () => void;
+  favoriteCitiesData: { city: City; weather: Weather }[];
 }
 
 interface FavoriteCitiesContextProviderProps {
@@ -21,6 +23,9 @@ export const FavoriteCitiesContextProvider = ({
   children,
 }: FavoriteCitiesContextProviderProps) => {
   const [favoriteCities, setFavoriteCities] = useState<City[]>([]);
+  const [favoriteCitiesData, setFavoriteCitiesData] = useState<
+    { city: City; weather: Weather }[]
+  >([]);
 
   useEffect(() => {
     const favoriteCities = localStorage.getItem('favoriteCities');
@@ -29,20 +34,23 @@ export const FavoriteCitiesContextProvider = ({
     }
   }, []);
 
-  const AddCityToFavorite = (city: City) => {
+  const AddCityToFavorite = (city: City, weather: Weather) => {
     const newCities = [...favoriteCities, city];
     setFavoriteCities(newCities);
     localStorage.setItem('favoriteCities', JSON.stringify(newCities));
+    setFavoriteCitiesData([...favoriteCitiesData, { city, weather }]);
   };
 
   const RemoveCityFromFavorite = (city: City) => {
     const newCities = favoriteCities.filter((c) => c.id !== city.id);
+    // Add functionality to remove weather from favoriteCitiesWeather
     setFavoriteCities(newCities);
     localStorage.setItem('favoriteCities', JSON.stringify(newCities));
   };
 
   const clearFavoriteCities = () => {
     setFavoriteCities([]);
+    setFavoriteCitiesData([]);
     localStorage.removeItem('favoriteCities');
   };
 
@@ -54,6 +62,7 @@ export const FavoriteCitiesContextProvider = ({
         AddCityToFavorite,
         RemoveCityFromFavorite,
         clearFavoriteCities,
+        favoriteCitiesData,
       }}
     >
       {children}

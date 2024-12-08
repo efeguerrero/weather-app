@@ -3,12 +3,14 @@ import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { City } from '../../Types/city';
 import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
+import { Weather } from '../../Types/weather';
 
 interface FavoriteButtonProps {
   city: City;
+  weather: Weather;
 }
 
-function FavoriteButton({ city }: FavoriteButtonProps) {
+function FavoriteButton({ city, weather }: FavoriteButtonProps) {
   const { favoriteCities, AddCityToFavorite, RemoveCityFromFavorite } =
     useFavoriteCitiesContext();
 
@@ -18,7 +20,7 @@ function FavoriteButton({ city }: FavoriteButtonProps) {
     if (isFavorite) {
       RemoveCityFromFavorite(city);
     } else {
-      AddCityToFavorite(city);
+      AddCityToFavorite(city, weather);
     }
   };
 
