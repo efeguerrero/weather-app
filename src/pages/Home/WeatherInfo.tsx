@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, CircularProgress, Container, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import { City } from '../../Types/city';
