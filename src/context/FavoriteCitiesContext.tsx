@@ -60,7 +60,10 @@ export const FavoriteCitiesContextProvider = ({
 
   const RemoveCityFromFavorite = (city: City) => {
     const newCities = favoriteCities.filter((c) => c.id !== city.id);
-    // Add functionality to remove weather from favoriteCitiesWeather
+    const newFavoriteCitiesData = favoriteCitiesData.filter(
+      (favoriteCity) => favoriteCity.city.id !== city.id
+    );
+    setFavoriteCitiesData(newFavoriteCitiesData);
     setFavoriteCities(newCities);
     localStorage.setItem('favoriteCities', JSON.stringify(newCities));
   };

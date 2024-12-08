@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import { City } from '../../Types/city';
@@ -14,6 +14,7 @@ interface WeatherInfoProps {
 
 const WeatherInfo = ({ selectedCity }: WeatherInfoProps) => {
   const [weather, setWeather] = useState<Weather | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const weatherCardInfo = [
     {
@@ -41,13 +42,30 @@ const WeatherInfo = ({ selectedCity }: WeatherInfoProps) => {
   useEffect(() => {
     const fetchWeather = async () => {
       if (selectedCity) {
+        setIsLoading(true);
         const newWeather = await getWeather(selectedCity);
         setWeather(newWeather);
+        setIsLoading(false);
       }
     };
 
     fetchWeather();
   }, [selectedCity]);
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          height: 200,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CircularProgress color="secondary" />
+      </Box>
+    );
+  }
 
   if (!selectedCity) {
     return (
