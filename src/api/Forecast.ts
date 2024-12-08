@@ -1,5 +1,5 @@
 import { City } from '../Types/city';
-import { Weather } from '../Types/weather';
+import { WeatherForecast } from '../Types/weather';
 
 const baseURL = 'https://weatherapi-com.p.rapidapi.com';
 const apiKey = process.env.REACT_APP_RAPID_API_KEY || '';
@@ -12,16 +12,18 @@ const options = {
   },
 };
 
-export const getWeather = async (city: City): Promise<Weather> => {
+export const getWeatherForecast = async (
+  city: City
+): Promise<WeatherForecast> => {
   // const coordinates = `${city.lat},${city.lon}`;
 
   // const response = await fetch(
-  //   `${baseURL}/current.json?q=${coordinates}`,
+  //   `${baseURL}/forecast.json?q=${coordinates}&days=5`,
   //   options
   // );
 
   const response = await fetch(
-    'https://run.mocky.io/v3/b08de06b-7e77-4b5c-9a3a-30909811cc12'
+    'https://run.mocky.io/v3/70bfdf56-0beb-4480-827b-81daf21b8943'
   );
 
   if (!response.ok) {
@@ -34,4 +36,4 @@ export const getWeather = async (city: City): Promise<Weather> => {
   return data;
 };
 
-// This fetch gets the REAL TIME weather data for a city.
+// This function retrieves the weather forecast for a city for the next 5 days. It includes data for the current date but it is not real time.
