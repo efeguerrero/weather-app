@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 import { City } from '../../Types/city';
 import CitySearchInput from './CitySearchInput';
 import WeatherInfo from './WeatherInfo';
-import CurrentDate from '../../components/common/CurrentDate';
+import CurrentDate from '../../components/common/currentDate/CurrentDate';
 import { getWeather } from '../../api/Weather';
 import { Weather } from '../../Types/weather';
 

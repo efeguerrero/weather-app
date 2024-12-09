@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Typography, Box } from '@mui/material';
-import CurrentDate from '../../components/common/CurrentDate';
+import CurrentDate from '../../components/common/currentDate/CurrentDate';
 import { useParams } from 'react-router-dom';
 import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
 import WeatherInfo from '../Home/WeatherInfo';

@@ -30,6 +30,7 @@ describe('FavoriteButton', () => {
     render(<FavoriteButton city={city} weather={weather} />);
 
     expect(screen.getByRole('button')).toBeInTheDocument();
+
     expect(
       screen.getByTestId('FavoriteBorderOutlinedIcon')
     ).toBeInTheDocument();

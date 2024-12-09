@@ -2,7 +2,7 @@ import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
 import { WeatherSummaryCard } from '../../components/Weather/WeatherSummaryCard';
 import { Typography, Container, Box } from '@mui/material';
 
-import CurrentDate from '../../components/common/CurrentDate';
+import CurrentDate from '../../components/common/currentDate/CurrentDate';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Favorites = () => {
