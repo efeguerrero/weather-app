@@ -23,11 +23,6 @@ export function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
   return (
     <Card
       sx={{
-        boxShadow: 'none',
-        border: '1px solid',
-        borderColor: 'primary.dark',
-        bgcolor: 'transparent',
-        borderRadius: 2,
         color: 'primary.contrastText',
         height: '100%',
         '& .MuiCardContent-root': {
@@ -38,7 +33,7 @@ export function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
       <CardContent>
         <Box
           display="flex"
-          flexDirection={{ xs: 'column', md: 'row' }}
+          flexDirection="column"
           alignItems="center"
           justifyContent="space-around"
           gap={1}
@@ -47,9 +42,9 @@ export function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
           <Box sx={{ textAlign: 'center' }}>
             <Typography
               variant="caption"
+              fontSize="0.75rem"
               sx={{
                 opacity: 0.8,
-                fontSize: { xs: '0.75rem', md: '0.875rem' },
               }}
             >
               {title}

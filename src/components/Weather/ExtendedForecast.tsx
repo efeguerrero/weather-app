@@ -28,12 +28,7 @@ function ExtendedForecast({
   return (
     <Card
       sx={{
-        bgcolor: 'transparent',
         color: 'primary.contrastText',
-        borderRadius: 2,
-        boxShadow: 'none',
-        border: '1px solid',
-        borderColor: 'primary.dark',
       }}
     >
       <CardContent sx={{ p: 3 }}>

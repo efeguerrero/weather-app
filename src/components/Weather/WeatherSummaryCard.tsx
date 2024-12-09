@@ -15,13 +15,8 @@ export function WeatherSummaryCard({
   return (
     <Card
       sx={{
-        bgcolor: 'transparent',
         color: 'primary.contrastText',
         mb: 3,
-        borderRadius: 2,
-        boxShadow: 'none',
-        border: '1px solid',
-        borderColor: 'primary.dark',
       }}
     >
       <CardContent sx={{ p: 3 }}>

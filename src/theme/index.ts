@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, Shadows } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -40,11 +40,33 @@ const theme = createTheme({
       active: '#71717a',
     },
     background: {
-      default: '#fff',
+      default: '#f4f4f5',
     },
   },
   typography: {
     fontFamily: 'Geist, sans-serif',
+  },
+  shadows: Array(25).fill('none') as Shadows,
+  components: {
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#fafafa',
+          border: 'none',
+        },
+      },
+    },
+
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: '1rem',
+        },
+        elevation1: {
+          boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px;',
+        },
+      },
+    },
   },
 });
 

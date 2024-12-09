@@ -20,7 +20,7 @@ function Layout() {
           borderBottom: '1px solid',
           borderColor: (theme) => theme.palette.primary.light,
           boxShadow: 'none',
-          backgroundColor: (theme) => theme.palette.background.default,
+          backgroundColor: '#fafafa',
           width: '100%',
         }}
       >
@@ -63,7 +63,7 @@ function Layout() {
           flexGrow: 1,
           p: 3,
           width: '100%',
-          maxWidth: 'sm',
+          maxWidth: 'md',
           marginTop: '64px', // Height of the AppBar
         }}
       >
