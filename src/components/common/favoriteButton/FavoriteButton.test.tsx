@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { BrowserRouter } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import { useFavoriteCitiesContext } from '../../../context/FavoriteCitiesContext';
 import { createMockCity } from '../../../__tests__/__mocks__/mockCity';
@@ -28,11 +27,7 @@ describe('FavoriteButton', () => {
       RemoveCityFromFavorite: jest.fn(),
     });
 
-    render(
-      <BrowserRouter>
-        <FavoriteButton city={city} weather={weather} />
-      </BrowserRouter>
-    );
+    render(<FavoriteButton city={city} weather={weather} />);
 
     expect(screen.getByRole('button')).toBeInTheDocument();
     expect(
@@ -49,11 +44,7 @@ describe('FavoriteButton', () => {
       RemoveCityFromFavorite: jest.fn(),
     });
 
-    render(
-      <BrowserRouter>
-        <FavoriteButton city={city} weather={weather} />
-      </BrowserRouter>
-    );
+    render(<FavoriteButton city={city} weather={weather} />);
 
     expect(screen.getByTestId('FavoriteIcon')).toBeInTheDocument();
   });
@@ -68,11 +59,7 @@ describe('FavoriteButton', () => {
       RemoveCityFromFavorite: jest.fn(),
     });
 
-    render(
-      <BrowserRouter>
-        <FavoriteButton city={city} weather={weather} />
-      </BrowserRouter>
-    );
+    render(<FavoriteButton city={city} weather={weather} />);
 
     await userEvent.click(screen.getByRole('button'));
     expect(addCityToFavorite).toHaveBeenCalledWith(city, weather);
@@ -88,13 +75,10 @@ describe('FavoriteButton', () => {
       RemoveCityFromFavorite: removeCityFromFavorite,
     });
 
-    render(
-      <BrowserRouter>
-        <FavoriteButton city={city} weather={weather} />
-      </BrowserRouter>
-    );
+    render(<FavoriteButton city={city} weather={weather} />);
 
     await userEvent.click(screen.getByRole('button'));
+
     expect(removeCityFromFavorite).toHaveBeenCalledWith(city);
   });
 });
