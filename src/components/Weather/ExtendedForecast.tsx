@@ -1,4 +1,10 @@
-import { Card, CardContent, Box, Typography } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Box,
+  Typography,
+  LinearProgress,
+} from '@mui/material';
 import { WeatherForecast } from '../../Types/weather';
 import { format, parseISO } from 'date-fns';
 
@@ -18,11 +24,15 @@ function ExtendedForecast({
   isLoading,
 }: ExtendedForecastProps) {
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return <LinearProgress color="secondary" />;
   }
 
   if (!weatherForecast) {
-    return <Typography>No weather forecast found</Typography>;
+    return (
+      <Typography>
+        No weather forecast found. Please try again later.
+      </Typography>
+    );
   }
 
   return (

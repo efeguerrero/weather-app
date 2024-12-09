@@ -10,7 +10,7 @@ import { WeatherForecast } from '../../Types/weather';
 
 function CityDetails() {
   const { cityId } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [weatherForecast, setWeatherForecast] =
     useState<WeatherForecast | null>(null);
   const { favoriteCitiesData } = useFavoriteCitiesContext();
