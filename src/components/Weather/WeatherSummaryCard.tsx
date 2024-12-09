@@ -1,7 +1,7 @@
 import { Typography, Card, CardContent, Box, Link } from '@mui/material';
 import { City } from '../../Types/city';
 import { Weather } from '../../Types/weather';
-import FavoriteButton from '../common/FavoriteButton';
+import FavoriteButton from '../common/favoriteButton/FavoriteButton';
 import { Link as RouterLink } from 'react-router-dom';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 

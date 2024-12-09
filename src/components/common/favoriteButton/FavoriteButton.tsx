@@ -1,10 +1,11 @@
 import { IconButton } from '@mui/material';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { City } from '../../Types/city';
-import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
-import { Weather } from '../../Types/weather';
+import { City } from '../../../Types/city';
+import { useFavoriteCitiesContext } from '../../../context/FavoriteCitiesContext';
+import { Weather } from '../../../Types/weather';
 import { useNavigate, useParams } from 'react-router-dom';
+
 interface FavoriteButtonProps {
   city: City;
   weather: Weather;
