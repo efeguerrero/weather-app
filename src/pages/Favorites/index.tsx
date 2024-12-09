@@ -1,6 +1,7 @@
 import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
 import { WeatherSummaryCard } from '../../components/Weather/WeatherSummaryCard';
 import { Typography, Container, Box } from '@mui/material';
+
 import CurrentDate from '../../components/common/CurrentDate';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -53,6 +54,7 @@ const Favorites = () => {
       <CurrentDate />
       {favoriteCitiesData.map(({ city, weather }) => (
         <WeatherSummaryCard
+          showDetailsButton={true}
           selectedCity={city}
           weather={weather}
           key={city.id}

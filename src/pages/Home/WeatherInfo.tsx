@@ -78,7 +78,11 @@ const WeatherInfo = ({
 
   return (
     <>
-      <WeatherSummaryCard selectedCity={selectedCity} weather={weather} />
+      <WeatherSummaryCard
+        showDetailsButton={false}
+        selectedCity={selectedCity}
+        weather={weather}
+      />
       <Grid container spacing={2}>
         {weatherCardInfo.map((item, index) => (
           <Grid size={{ xs: 6, sm: 3 }} key={index}>
