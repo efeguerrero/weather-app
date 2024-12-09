@@ -26,7 +26,7 @@ function Home() {
   }, [selectedCity]);
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
+    <Container maxWidth="md" sx={{ py: 4, px: 0 }}>
       <CurrentDate />
       <CitySearchInput
         selectedCity={selectedCity}

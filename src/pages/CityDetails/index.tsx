@@ -39,7 +39,7 @@ function CityDetails() {
   }
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
+    <Container maxWidth="md" sx={{ py: 4, px: 0 }}>
       <CurrentDate />
       <WeatherInfo
         selectedCity={selectedCity.city}

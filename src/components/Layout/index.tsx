@@ -61,7 +61,7 @@ function Layout() {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          p: 2,
           width: '100%',
           maxWidth: 'md',
           marginTop: '64px', // Height of the AppBar
