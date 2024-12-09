@@ -56,7 +56,7 @@ function CitySearchInput({
             mb: 3,
             '& .MuiOutlinedInput-root': {
               bgcolor: 'background.paper',
-              borderRadius: 1,
+              borderRadius: '1rem',
               '&:hover': {
                 bgcolor: 'background.paper',
               },

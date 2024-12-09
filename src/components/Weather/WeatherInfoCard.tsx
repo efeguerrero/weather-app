@@ -35,11 +35,22 @@ export function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          justifyContent="space-around"
-          gap={1}
+          justifyContent="space-between"
+          gap={1.5}
         >
-          <Icon />
-          <Box sx={{ textAlign: 'center' }}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            gap={1}
+          >
+            <Icon
+              sx={{
+                color: 'secondary.main',
+                width: '2rem',
+                height: '2rem',
+              }}
+            />
             <Typography
               variant="caption"
               fontSize="0.75rem"
@@ -49,16 +60,16 @@ export function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
             >
               {title}
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: 500,
-                fontSize: { xs: '1rem', md: '1.25rem' },
-              }}
-            >
-              {value}
-            </Typography>
           </Box>
+          <Typography
+            variant="body1"
+            sx={{
+              fontWeight: 500,
+              fontSize: { xs: '1rem', md: '1.25rem' },
+            }}
+          >
+            {value}
+          </Typography>
         </Box>
       </CardContent>
     </Card>
