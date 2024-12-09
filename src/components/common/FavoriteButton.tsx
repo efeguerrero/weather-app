@@ -4,13 +4,15 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import { City } from '../../Types/city';
 import { useFavoriteCitiesContext } from '../../context/FavoriteCitiesContext';
 import { Weather } from '../../Types/weather';
-
+import { useNavigate, useParams } from 'react-router-dom';
 interface FavoriteButtonProps {
   city: City;
   weather: Weather;
 }
 
 function FavoriteButton({ city, weather }: FavoriteButtonProps) {
+  const navigate = useNavigate();
+  const { cityId } = useParams();
   const { favoriteCities, AddCityToFavorite, RemoveCityFromFavorite } =
     useFavoriteCitiesContext();
 
@@ -19,6 +21,9 @@ function FavoriteButton({ city, weather }: FavoriteButtonProps) {
   const handleClick = () => {
     if (isFavorite) {
       RemoveCityFromFavorite(city);
+      if (cityId) {
+        navigate('/favorites/');
+      }
     } else {
       AddCityToFavorite(city, weather);
     }
