@@ -61,13 +61,7 @@ export function WeatherInfoCard({ icon, title, value }: WeatherCardProps) {
               {title}
             </Typography>
           </Box>
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 500,
-              fontSize: { xs: '1rem', md: '1.25rem' },
-            }}
-          >
+          <Typography variant="body1" fontWeight={500} fontSize={16}>
             {value}
           </Typography>
         </Box>

@@ -63,7 +63,7 @@ function Layout() {
           flexGrow: 1,
           p: 2,
           width: '100%',
-          maxWidth: 'md',
+          maxWidth: 'sm',
           marginTop: '56px', // Height of the AppBar
         }}
       >
