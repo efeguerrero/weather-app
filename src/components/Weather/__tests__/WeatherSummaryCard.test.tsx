@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { useFavoriteCitiesContext } from '../../../context/FavoriteCitiesContext';
 import { WeatherSummaryCard } from '../WeatherSummaryCard';
 import { createMockCity } from '../../../__tests__/__mocks__/mockCity';
 import { createMockWeather } from '../../../__tests__/__mocks__/mockWeather';
-import { MemoryRouter } from 'react-router-dom';
 
 jest.mock('../../../context/FavoriteCitiesContext', () => ({
   useFavoriteCitiesContext: jest.fn(),
