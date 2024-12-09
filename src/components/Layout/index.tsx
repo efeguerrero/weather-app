@@ -64,7 +64,7 @@ function Layout() {
           p: 2,
           width: '100%',
           maxWidth: 'md',
-          marginTop: '64px', // Height of the AppBar
+          marginTop: '56px', // Height of the AppBar
         }}
       >
         <Outlet />

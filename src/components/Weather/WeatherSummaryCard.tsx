@@ -2,6 +2,8 @@ import { Typography, Card, CardContent, Box } from '@mui/material';
 import { City } from '../../Types/city';
 import { Weather } from '../../Types/weather';
 import FavoriteButton from '../common/FavoriteButton';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { Link } from 'react-router-dom';
 
 interface WeatherSummaryCardProps {
   selectedCity: City;
@@ -41,7 +43,20 @@ export function WeatherSummaryCard({
                 {selectedCity.region}, {selectedCity.country}
               </Typography>
             </Box>
-            <FavoriteButton city={selectedCity} weather={weather} />
+            <Box
+              display="flex"
+              gap={1}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Link
+                to={`/favorites/${selectedCity.id}`}
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                <AddCircleOutlineOutlinedIcon color="secondary" />
+              </Link>
+              <FavoriteButton city={selectedCity} weather={weather} />
+            </Box>
           </Box>
 
           <Box
