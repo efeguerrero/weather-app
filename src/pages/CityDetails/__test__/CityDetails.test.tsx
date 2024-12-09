@@ -44,7 +44,7 @@ jest.mock('../../../api/Forecast', () => ({
   getWeatherForecast: () => Promise.resolve(mockWeatherForecast),
 }));
 
-// Mock context data
+// Mock context data!
 const mockFavoriteCitiesData = [
   {
     city: mockCity,
@@ -63,16 +63,14 @@ describe('CityDetails', () => {
   it('renders all components when city is found', async () => {
     mockUseParams.mockReturnValue({ cityId: '1' });
     render(<CityDetails />);
-    // Check if all components are rendered
+
     expect(screen.getByTestId('current-date')).toBeInTheDocument();
     expect(screen.getByTestId('weather-info')).toBeInTheDocument();
     expect(screen.getByTestId('extended-forecast')).toBeInTheDocument();
 
-    // Verify loading states
     const weatherInfo = screen.getByTestId('weather-info');
     expect(weatherInfo.getAttribute('data-loading')).toBe('false');
 
-    // Initially loading, then not loading after forecast is fetched
     const extendedForecast = screen.getByTestId('extended-forecast');
     expect(extendedForecast.getAttribute('data-loading')).toBe('true');
 
