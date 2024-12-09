@@ -1,11 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import { Box, AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useNavigate } from 'react-router-dom';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Layout() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <Box
@@ -14,6 +17,8 @@ function Layout() {
       <AppBar
         position="fixed"
         sx={{
+          borderBottom: '1px solid',
+          borderColor: (theme) => theme.palette.primary.light,
           boxShadow: 'none',
           backgroundColor: (theme) => theme.palette.background.default,
           width: '100%',
@@ -32,13 +37,21 @@ function Layout() {
             </Typography>
             <Box>
               <IconButton color="secondary" onClick={() => navigate('/')}>
-                <HomeIcon />
+                {location.pathname === '/' ? (
+                  <HomeIcon />
+                ) : (
+                  <HomeOutlinedIcon />
+                )}
               </IconButton>
               <IconButton
                 color="secondary"
                 onClick={() => navigate('/favorites')}
               >
-                <FavoriteIcon />
+                {location.pathname === '/favorites' ? (
+                  <FavoriteIcon />
+                ) : (
+                  <FavoriteBorderIcon />
+                )}
               </IconButton>
             </Box>
           </Toolbar>
