@@ -47,7 +47,7 @@ function Layout() {
                 color="secondary"
                 onClick={() => navigate('/favorites')}
               >
-                {location.pathname === '/favorites' ? (
+                {location.pathname.startsWith('/favorites') ? (
                   <FavoriteIcon />
                 ) : (
                   <FavoriteBorderIcon />
