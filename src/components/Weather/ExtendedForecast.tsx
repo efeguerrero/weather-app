@@ -52,7 +52,7 @@ function ExtendedForecast({
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              py: 2,
+              py: 1.5,
               borderBottom: '1px solid',
               borderColor: 'primary.light',
               '&:last-child': {
