@@ -92,7 +92,7 @@ describe('WeatherSummaryCard', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText('Extended Forecast')).toBeInTheDocument();
+    expect(screen.getByText('Forecast')).toBeInTheDocument();
   });
 
   it('does not render the details button when showDetailsButton is false', () => {
@@ -112,6 +112,6 @@ describe('WeatherSummaryCard', () => {
       />
     );
 
-    expect(screen.queryByText('Extended Forecast')).not.toBeInTheDocument();
+    expect(screen.queryByText('Forecast')).not.toBeInTheDocument();
   });
 });
