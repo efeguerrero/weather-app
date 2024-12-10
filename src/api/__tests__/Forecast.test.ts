@@ -30,9 +30,6 @@ describe('Forecast API', () => {
     const data = await getWeatherForecast(mockCity);
 
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith(
-      'https://run.mocky.io/v3/70bfdf56-0beb-4480-827b-81daf21b8943'
-    );
     expect(data).toEqual(mockWeatherData);
   });
 

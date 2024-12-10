@@ -5,15 +5,11 @@ import { baseURL, options } from './config';
 export const getWeatherForecast = async (
   city: City
 ): Promise<WeatherForecast> => {
-  // const coordinates = `${city.lat},${city.lon}`;
-
-  // const response = await fetch(
-  //   `${baseURL}/forecast.json?q=${coordinates}&days=5`,
-  //   options
-  // );
+  const coordinates = `${city.lat},${city.lon}`;
 
   const response = await fetch(
-    'https://run.mocky.io/v3/70bfdf56-0beb-4480-827b-81daf21b8943'
+    `${baseURL}/forecast.json?q=${coordinates}&days=5`,
+    options
   );
 
   if (!response.ok) {
@@ -21,7 +17,6 @@ export const getWeatherForecast = async (
   }
 
   const data = await response.json();
-  console.log(data);
 
   return data;
 };

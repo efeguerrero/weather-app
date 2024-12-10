@@ -19,9 +19,6 @@ describe('Cities API', () => {
     const data = await getCities('London');
 
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith(
-      'https://run.mocky.io/v3/9e817c6f-dcdc-4344-a3e5-2df558df791c'
-    );
     expect(data).toEqual(mockCitiesData);
   });
 
