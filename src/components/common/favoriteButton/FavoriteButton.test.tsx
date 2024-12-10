@@ -22,7 +22,7 @@ describe('FavoriteButton', () => {
     const city = createMockCity();
     const weather = createMockWeather();
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [],
+      favoriteCitiesData: [],
       AddCityToFavorite: jest.fn(),
       RemoveCityFromFavorite: jest.fn(),
     });
@@ -40,7 +40,7 @@ describe('FavoriteButton', () => {
     const city = createMockCity();
     const weather = createMockWeather();
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [city],
+      favoriteCitiesData: [{ city, weather }],
       AddCityToFavorite: jest.fn(),
       RemoveCityFromFavorite: jest.fn(),
     });
@@ -55,7 +55,7 @@ describe('FavoriteButton', () => {
     const weather = createMockWeather();
     const addCityToFavorite = jest.fn();
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [],
+      favoriteCitiesData: [],
       AddCityToFavorite: addCityToFavorite,
       RemoveCityFromFavorite: jest.fn(),
     });
@@ -71,7 +71,7 @@ describe('FavoriteButton', () => {
     const weather = createMockWeather();
     const removeCityFromFavorite = jest.fn();
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [city],
+      favoriteCitiesData: [{ city, weather }],
       AddCityToFavorite: jest.fn(),
       RemoveCityFromFavorite: removeCityFromFavorite,
     });

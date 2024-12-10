@@ -4,8 +4,6 @@ import { Weather } from '../Types/weather';
 import { getWeather } from '../api/Weather';
 
 interface FavoriteCitiesContextProps {
-  favoriteCities: City[];
-  setFavoriteCities: React.Dispatch<React.SetStateAction<City[]>>;
   AddCityToFavorite: (city: City, weather: Weather) => void;
   RemoveCityFromFavorite: (city: City) => void;
   clearFavoriteCities: () => void;
@@ -25,26 +23,24 @@ export const FavoriteCitiesContextProvider = ({
   children,
 }: FavoriteCitiesContextProviderProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [favoriteCities, setFavoriteCities] = useState<City[]>([]);
   const [favoriteCitiesData, setFavoriteCitiesData] = useState<
     { city: City; weather: Weather }[]
   >([]);
 
-  // Load favorite cities from Local Storage on first load and fetch weather data for each city.
+  // Load favorite cities data from Local Storage on first load and update weather data for each city.
   useEffect(() => {
-    const favoriteCities: City[] = JSON.parse(
-      localStorage.getItem('favoriteCities') || '[]'
+    const favoriteCitiesData: { city: City; weather: Weather }[] = JSON.parse(
+      localStorage.getItem('favoriteCitiesData') || '[]'
     );
-    if (favoriteCities) {
-      setFavoriteCities(favoriteCities);
+    if (favoriteCitiesData) {
       const getFavoriteCitiesData = async () => {
-        const favoriteCitiesData = await Promise.all(
-          favoriteCities.map(async (city) => {
-            const weather = await getWeather(city);
-            return { city, weather };
+        const newFavoriteCitiesData = await Promise.all(
+          favoriteCitiesData.map(async (item) => {
+            const newWeatherData = await getWeather(item.city);
+            return { city: item.city, weather: newWeatherData };
           })
         );
-        setFavoriteCitiesData(favoriteCitiesData);
+        setFavoriteCitiesData(newFavoriteCitiesData);
         setIsLoading(false);
       };
       getFavoriteCitiesData();
@@ -52,24 +48,20 @@ export const FavoriteCitiesContextProvider = ({
   }, []);
 
   const AddCityToFavorite = (city: City, weather: Weather) => {
-    const newCities = [...favoriteCities, city];
-    setFavoriteCities(newCities);
-    localStorage.setItem('favoriteCities', JSON.stringify(newCities));
-    setFavoriteCitiesData([...favoriteCitiesData, { city, weather }]);
+    const newCitiesData = [...favoriteCitiesData, { city, weather }];
+    setFavoriteCitiesData(newCitiesData);
+    localStorage.setItem('favoriteCitiesData', JSON.stringify(newCitiesData));
   };
 
   const RemoveCityFromFavorite = (city: City) => {
-    const newCities = favoriteCities.filter((c) => c.id !== city.id);
-    const newFavoriteCitiesData = favoriteCitiesData.filter(
-      (favoriteCity) => favoriteCity.city.id !== city.id
+    const newCitiesData = favoriteCitiesData.filter(
+      (item) => item.city.id !== city.id
     );
-    setFavoriteCitiesData(newFavoriteCitiesData);
-    setFavoriteCities(newCities);
-    localStorage.setItem('favoriteCities', JSON.stringify(newCities));
+    setFavoriteCitiesData(newCitiesData);
+    localStorage.setItem('favoriteCitiesData', JSON.stringify(newCitiesData));
   };
 
   const clearFavoriteCities = () => {
-    setFavoriteCities([]);
     setFavoriteCitiesData([]);
     localStorage.removeItem('favoriteCities');
   };
@@ -77,8 +69,6 @@ export const FavoriteCitiesContextProvider = ({
   return (
     <FavoriteCitiesContext.Provider
       value={{
-        favoriteCities,
-        setFavoriteCities,
         AddCityToFavorite,
         RemoveCityFromFavorite,
         clearFavoriteCities,

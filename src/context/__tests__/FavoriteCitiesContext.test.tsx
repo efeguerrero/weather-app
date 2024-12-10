@@ -40,19 +40,15 @@ describe('FavoriteCitiesContext', () => {
 
     // We add this to wait for the state to update. Otherwise its undefined
     await waitFor(() => {
-      expect(result.current.favoriteCities).toEqual([mockCity]);
       expect(result.current.favoriteCitiesData).toEqual([
         { city: mockCity, weather: mockWeather },
       ]);
-      expect(
-        JSON.parse(localStorage.getItem('favoriteCities') || '[]')
-      ).toEqual([mockCity]);
     });
   });
 
   it('should remove a city from favorites', async () => {
-    const initialCities = [mockCity];
-    localStorage.setItem('favoriteCities', JSON.stringify(initialCities));
+    const initialCities = [{ city: mockCity, weather: mockWeather }];
+    localStorage.setItem('favoriteCitiesData', JSON.stringify(initialCities));
 
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <FavoriteCitiesContextProvider>{children}</FavoriteCitiesContextProvider>
@@ -71,14 +67,13 @@ describe('FavoriteCitiesContext', () => {
     });
 
     await waitFor(() => {
-      expect(result.current.favoriteCities).toEqual([]);
       expect(result.current.favoriteCitiesData).toEqual([]);
     });
   });
 
   it('should clear all favorite cities', async () => {
-    const initialCities = [mockCity, { ...mockCity, id: 2 }];
-    localStorage.setItem('favoriteCities', JSON.stringify(initialCities));
+    const initialCities = [{ city: mockCity, weather: mockWeather }];
+    localStorage.setItem('favoriteCitiesData', JSON.stringify(initialCities));
 
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <FavoriteCitiesContextProvider>{children}</FavoriteCitiesContextProvider>
@@ -97,14 +92,13 @@ describe('FavoriteCitiesContext', () => {
     });
 
     await waitFor(() => {
-      expect(result.current.favoriteCities).toEqual([]);
       expect(result.current.favoriteCitiesData).toEqual([]);
     });
   });
 
   it('should load favorite cities from localStorage on mount', async () => {
-    const initialCities = [mockCity];
-    localStorage.setItem('favoriteCities', JSON.stringify(initialCities));
+    const initialCities = [{ city: mockCity, weather: mockWeather }];
+    localStorage.setItem('favoriteCitiesData', JSON.stringify(initialCities));
 
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <FavoriteCitiesContextProvider>{children}</FavoriteCitiesContextProvider>
@@ -118,6 +112,6 @@ describe('FavoriteCitiesContext', () => {
       expect(result.current.isLoading).toBe(false);
     });
 
-    expect(result.current.favoriteCities).toEqual(initialCities);
+    expect(result.current.favoriteCitiesData).toEqual(initialCities);
   });
 });

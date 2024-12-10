@@ -14,10 +14,12 @@ interface FavoriteButtonProps {
 function FavoriteButton({ city, weather }: FavoriteButtonProps) {
   const navigate = useNavigate();
   const { cityId } = useParams();
-  const { favoriteCities, AddCityToFavorite, RemoveCityFromFavorite } =
+  const { favoriteCitiesData, AddCityToFavorite, RemoveCityFromFavorite } =
     useFavoriteCitiesContext();
 
-  const isFavorite = favoriteCities.some((favCity) => favCity.id === city.id);
+  const isFavorite = favoriteCitiesData.some(
+    (data) => data.city.id === city.id
+  );
 
   const handleClick = () => {
     if (isFavorite) {

@@ -25,7 +25,7 @@ describe('WeatherSummaryCard', () => {
     });
     const weather = createMockWeather();
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [],
+      favoriteCitiesData: [],
       AddCityToFavorite: jest.fn(),
       RemoveCityFromFavorite: jest.fn(),
     });
@@ -56,7 +56,7 @@ describe('WeatherSummaryCard', () => {
       },
     });
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [],
+      favoriteCitiesData: [],
       AddCityToFavorite: jest.fn(),
       RemoveCityFromFavorite: jest.fn(),
     });
@@ -78,7 +78,7 @@ describe('WeatherSummaryCard', () => {
     const city = createMockCity();
     const weather = createMockWeather();
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [],
+      favoriteCitiesData: [],
       AddCityToFavorite: jest.fn(),
       RemoveCityFromFavorite: jest.fn(),
     });
@@ -99,7 +99,7 @@ describe('WeatherSummaryCard', () => {
     const city = createMockCity();
     const weather = createMockWeather();
     (useFavoriteCitiesContext as jest.Mock).mockReturnValue({
-      favoriteCities: [],
+      favoriteCitiesData: [],
       AddCityToFavorite: jest.fn(),
       RemoveCityFromFavorite: jest.fn(),
     });
