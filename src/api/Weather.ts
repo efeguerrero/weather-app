@@ -1,16 +1,8 @@
 import { City } from '../Types/city';
 import { Weather } from '../Types/weather';
+import { baseURL, options } from './config';
 
-const baseURL = 'https://weatherapi-com.p.rapidapi.com';
-const apiKey = process.env.REACT_APP_RAPID_API_KEY || '';
 
-const options = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': apiKey,
-    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
-  },
-};
 
 export const getWeather = async (city: City): Promise<Weather> => {
   // const coordinates = `${city.lat},${city.lon}`;

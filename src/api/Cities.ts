@@ -1,15 +1,5 @@
 import { City } from '../Types/city';
-
-const baseURL = 'https://weatherapi-com.p.rapidapi.com';
-const apiKey = process.env.REACT_APP_RAPID_API_KEY || '';
-
-const options = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': apiKey,
-    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
-  },
-};
+import { baseURL, options } from './config';
 
 export const getCities = async (city: string): Promise<City[]> => {
   // const response = await fetch(`${baseURL}/search.json?q=${city}`, options);
