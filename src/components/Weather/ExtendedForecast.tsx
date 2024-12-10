@@ -14,7 +14,7 @@ interface ExtendedForecastProps {
 }
 
 function getDayName(date: Date | string): string {
-  // Need to parse the date to avoid timezone issues and get the day name
+  // Need to parse the date to avoid timezone issues and get the day name right
   const parsedDate = typeof date === 'string' ? parseISO(date) : date;
   return format(parsedDate, 'EEEE');
 }

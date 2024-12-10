@@ -4,6 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
+// Disabling React Router Flag Warning in console for tests
 beforeAll(() => {
   jest
     .spyOn(console, 'warn')

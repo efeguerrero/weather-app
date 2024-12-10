@@ -30,7 +30,6 @@ jest.mock('../../../components/Weather/ExtendedForecast', () => ({
   ),
 }));
 
-// Mock data
 const mockCity = createMockCity({ id: 1 });
 const mockWeather = createMockWeather();
 const mockWeatherForecast = {
@@ -39,7 +38,6 @@ const mockWeatherForecast = {
   },
 };
 
-// Mock API call
 jest.mock('../../../api/Forecast', () => ({
   getWeatherForecast: () => Promise.resolve(mockWeatherForecast),
 }));

@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import NotFound from '../NotFound';
 
-// Mock useNavigate
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),

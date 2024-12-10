@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import Favorites from '../index';
 import { useFavoriteCitiesContext } from '../../../context/FavoriteCitiesContext';
 
-// Mock the context hook
 jest.mock('../../../context/FavoriteCitiesContext');
 
 // Mock already tested components!
