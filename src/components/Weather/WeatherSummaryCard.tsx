@@ -41,7 +41,7 @@ export function WeatherSummaryCard({
             justifyContent="space-between"
             alignItems="center"
           >
-            <Box display="flex" alignItems="center" gap={1}>
+            <Box display="flex" alignItems="center" gap={0.5}>
               {weather.current.condition.icon && (
                 <Box display="flex" alignItems="center">
                   <img
@@ -52,8 +52,8 @@ export function WeatherSummaryCard({
                 </Box>
               )}
               <Box display="flex" flexDirection="column">
-                <Typography variant="h3" sx={{ fontWeight: 500 }}>
-                  {`${weather.current.temp_c}°`}
+                <Typography variant="h4" sx={{ fontWeight: 500 }}>
+                  {`${Math.round(weather.current.temp_c)}°`}
                 </Typography>
                 <Typography variant="caption" sx={{ opacity: 0.7 }}>
                   {weather.current.condition.text}
@@ -79,8 +79,8 @@ export function WeatherSummaryCard({
                     },
                   }}
                 >
-                  Extended Forecast
-                  <ArrowForwardOutlinedIcon fontSize="small" />
+                  Forecast
+                  <ArrowForwardOutlinedIcon fontSize="inherit" />
                 </Link>
               </Box>
             )}
