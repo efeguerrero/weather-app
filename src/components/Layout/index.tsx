@@ -10,6 +10,8 @@ function Layout() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log("test")
+
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
