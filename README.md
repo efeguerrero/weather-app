@@ -1,7 +1,3 @@
-## Live Version
-
-https://weather-app-fg.netlify.app/
-
 ## How to run the project locally
 
 1. Clone the repository:
